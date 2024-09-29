@@ -24,12 +24,6 @@ public class GridMovement : MonoBehaviour
         targetPos = transform.position;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public bool TryMove(Vector2 direction)
     {
         if (CanMove(direction))
