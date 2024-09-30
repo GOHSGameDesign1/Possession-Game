@@ -9,25 +9,12 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D rb;
     GridMovement gridMovement;
 
-    [SerializeField] Tilemap groundTilemap;
-    [SerializeField] Tilemap colTilemap;
-
     [SerializeField] ParticleSystem possessVFX;
-
-    private Vector2 targetPos;
-
-    [SerializeField] bool isPossessed;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         gridMovement = GetComponent<GridMovement>();
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-        //isPossessed = false;
-        targetPos = transform.position;
     }
 
     // Update is called once per frame
@@ -35,14 +22,14 @@ public class PlayerController : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.DownArrow))
         {
-            CallMove(Vector2.down);
+            gridMovement.GhostMove(Vector2.down);
         }
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
-            CallMove(Vector2.up);
+            gridMovement.GhostMove(Vector2.up);
         }
-        if (Input.GetKeyDown(KeyCode.RightArrow)) { CallMove(Vector2.right); }
-        if (Input.GetKeyDown(KeyCode.LeftArrow)) { CallMove(Vector2.left); }
+        if (Input.GetKeyDown(KeyCode.RightArrow)) { gridMovement.GhostMove(Vector2.right); }
+        if (Input.GetKeyDown(KeyCode.LeftArrow)) { gridMovement.GhostMove(Vector2.left); }
 
         if(Input.GetKeyDown(KeyCode.Space))
         {
@@ -63,17 +50,6 @@ public class PlayerController : MonoBehaviour
                 hit.transform.GetComponent<CorpseController>().BecomePossessed();
                 gameObject.SetActive(false);
             }
-        }
-    }
-
-    void CallMove(Vector2 direction)
-    {
-        if(isPossessed)
-        {
-            gridMovement.TryMove(direction);
-        } else
-        {
-            gridMovement.GhostMove(direction);
         }
     }
 }

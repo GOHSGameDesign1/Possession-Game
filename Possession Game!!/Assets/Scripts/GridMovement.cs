@@ -71,6 +71,7 @@ public class GridMovement : MonoBehaviour
         RaycastHit2D hit = Physics2D.BoxCast(groundTilemap.GetCellCenterWorld(gridPos), Vector2.one * 0.5f, 0, Vector2.zero);
         if (hit)
         {
+            if (hit.transform.CompareTag("Door")) return false;
             if (hit.transform.CompareTag("Box"))
             {
                 return hit.transform.GetComponent<GridMovement>().TryMove(direction);

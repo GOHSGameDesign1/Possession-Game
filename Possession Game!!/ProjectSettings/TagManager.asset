@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Box
   - Corpse
+  - Door
   layers:
   - Default
   - TransparentFX
