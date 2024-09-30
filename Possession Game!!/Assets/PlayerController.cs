@@ -12,7 +12,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Tilemap groundTilemap;
     [SerializeField] Tilemap colTilemap;
 
+    [SerializeField] ParticleSystem possessVFX;
+
     private Vector2 targetPos;
+
+    [SerializeField] bool isPossessed;
 
     private void Awake()
     {
@@ -22,6 +26,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //isPossessed = false;
         targetPos = transform.position;
     }
 
@@ -30,13 +35,45 @@ public class PlayerController : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.DownArrow))
         {
-            gridMovement.TryMove(Vector2.down);
+            CallMove(Vector2.down);
         }
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
-            gridMovement.TryMove(Vector2.up);
+            CallMove(Vector2.up);
         }
-        if (Input.GetKeyDown(KeyCode.RightArrow)) { gridMovement.TryMove(Vector2.right); }
-        if (Input.GetKeyDown(KeyCode.LeftArrow)) { gridMovement.TryMove(Vector2.left); }
+        if (Input.GetKeyDown(KeyCode.RightArrow)) { CallMove(Vector2.right); }
+        if (Input.GetKeyDown(KeyCode.LeftArrow)) { CallMove(Vector2.left); }
+
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            TryPossess();
+        }
+    }
+
+    void TryPossess()
+    {
+        RaycastHit2D hit = Physics2D.BoxCast(gridMovement.GetCellCenterOfPoint(gridMovement.targetPos), Vector2.one * 0.5f, 0,
+            Vector2.zero);
+
+        if (hit)
+        {
+            if (hit.transform.CompareTag("Corpse"))
+            {
+                Instantiate(possessVFX, gridMovement.targetPos, Quaternion.identity);
+                hit.transform.GetComponent<CorpseController>().BecomePossessed();
+                gameObject.SetActive(false);
+            }
+        }
+    }
+
+    void CallMove(Vector2 direction)
+    {
+        if(isPossessed)
+        {
+            gridMovement.TryMove(direction);
+        } else
+        {
+            gridMovement.GhostMove(direction);
+        }
     }
 }

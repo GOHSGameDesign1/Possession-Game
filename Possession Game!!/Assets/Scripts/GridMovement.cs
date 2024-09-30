@@ -9,7 +9,7 @@ public class GridMovement : MonoBehaviour
     Tilemap groundTilemap;
     Tilemap colTilemap;
 
-    Vector2 targetPos;
+    public Vector2 targetPos {  get; private set; }
 
     private void Awake()
     {
@@ -24,12 +24,21 @@ public class GridMovement : MonoBehaviour
         targetPos = transform.position;
     }
 
+    public Vector2 GetCellCenterOfPoint(Vector3 point)
+    {
+        return groundTilemap.GetCellCenterWorld(GetGridPosOfPoint(point));
+    }
+
+    Vector3Int GetGridPosOfPoint(Vector3 point)
+    {
+        return groundTilemap.WorldToCell(point);
+    }
+
     public bool TryMove(Vector2 direction)
     {
         if (CanMove(direction))
         {
-            Vector3Int gridPos = groundTilemap.WorldToCell(transform.position + (Vector3)direction);
-            targetPos = groundTilemap.GetCellCenterWorld(gridPos);
+            targetPos = GetCellCenterOfPoint(transform.position + (Vector3)direction);
             StopAllCoroutines();
             StartCoroutine(LerpSmoothToTarget());
             return true;
@@ -38,9 +47,22 @@ public class GridMovement : MonoBehaviour
         return false;
     }
 
-    bool CanMove(Vector2 direction)
+    public void GhostMove(Vector2 direction)
     {
         Vector3Int gridPos = groundTilemap.WorldToCell(transform.position + (Vector3)direction);
+        if (!groundTilemap.HasTile(gridPos))
+        {
+            return;
+        }
+
+        targetPos = GetCellCenterOfPoint(transform.position + (Vector3)direction);
+        StopAllCoroutines();
+        StartCoroutine(LerpSmoothToTarget());
+    }
+
+    bool CanMove(Vector2 direction)
+    {
+        Vector3Int gridPos = GetGridPosOfPoint(transform.position + (Vector3)direction);
         if (!groundTilemap.HasTile(gridPos) || colTilemap.HasTile(gridPos))
         {
             return false;
