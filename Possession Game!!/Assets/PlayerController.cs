@@ -6,14 +6,14 @@ using UnityEngine.Tilemaps;
 [RequireComponent(typeof(GridMovement))]
 public class PlayerController : MonoBehaviour
 {
-    Rigidbody2D rb;
-    GridMovement gridMovement;
+    protected GridMovement gridMovement;
+    public delegate void OnMove();
+    public static event OnMove onMove;
 
-    [SerializeField] ParticleSystem possessVFX;
+    [SerializeField] private ParticleSystem possessVFX;
 
     private void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
         gridMovement = GetComponent<GridMovement>();
     }
 
@@ -22,14 +22,16 @@ public class PlayerController : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.DownArrow))
         {
+            CallMoveEvent();
             gridMovement.GhostMove(Vector2.down);
         }
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
+            CallMoveEvent();
             gridMovement.GhostMove(Vector2.up);
         }
-        if (Input.GetKeyDown(KeyCode.RightArrow)) { gridMovement.GhostMove(Vector2.right); }
-        if (Input.GetKeyDown(KeyCode.LeftArrow)) { gridMovement.GhostMove(Vector2.left); }
+        if (Input.GetKeyDown(KeyCode.RightArrow)) { CallMoveEvent(); gridMovement.GhostMove(Vector2.right); }
+        if (Input.GetKeyDown(KeyCode.LeftArrow)) { CallMoveEvent(); gridMovement.GhostMove(Vector2.left); }
 
         if(Input.GetKeyDown(KeyCode.Space))
         {
@@ -51,5 +53,10 @@ public class PlayerController : MonoBehaviour
                 gameObject.SetActive(false);
             }
         }
+    }
+
+    protected void CallMoveEvent()
+    {
+        onMove.Invoke();
     }
 }
