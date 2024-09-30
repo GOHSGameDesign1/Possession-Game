@@ -80,7 +80,7 @@ public class GridMovement : MonoBehaviour
         if (hit)
         {
             if (hit.transform.CompareTag("Door")) return false;
-            if (hit.transform.CompareTag("Box"))
+            if (hit.transform.CompareTag("Box") || hit.transform.CompareTag("Corpse"))
             {
                 return hit.transform.GetComponent<GridMovement>().TryMove(direction);
             }
