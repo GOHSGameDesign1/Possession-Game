@@ -38,15 +38,17 @@ public class PlayerController : MonoBehaviour
     void TryPossess()
     {
         RaycastHit2D hit = Physics2D.BoxCast(gridMovement.GetCellCenterOfPoint(gridMovement.targetPos), Vector2.one * 0.5f, 0,
-            Vector2.zero);
+            Vector2.zero, Mathf.Infinity, LayerMask.GetMask("Default"));
 
         if (hit)
         {
             if (hit.transform.CompareTag("Corpse"))
             {
-                Instantiate(possessVFX, gridMovement.targetPos, Quaternion.identity);
-                hit.transform.GetComponent<CorpseController>().BecomePossessed();
-                gameObject.SetActive(false);
+
+                if (hit.transform.GetComponent<CorpseController>().BecomePossessed())
+                {
+                    Instantiate(possessVFX, gridMovement.targetPos, Quaternion.identity);
+                }
             }
         }
     }

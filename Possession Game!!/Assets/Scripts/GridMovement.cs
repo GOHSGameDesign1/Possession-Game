@@ -30,6 +30,11 @@ public class GridMovement : MonoBehaviour
         isLerping = false;
     }
 
+    private void OnEnable()
+    {
+        targetPos = transform.position;
+    }
+
     public Vector2 GetCellCenterOfPoint(Vector3 point)
     {
         return groundTilemap.GetCellCenterWorld(GetGridPosOfPoint(point));
@@ -44,6 +49,20 @@ public class GridMovement : MonoBehaviour
     {
         if (isLerping) return false;
         if (CanMove(direction))
+        {
+            targetPos = GetCellCenterOfPoint(transform.position + (Vector3)direction);
+            StopAllCoroutines();
+            StartCoroutine(LerpSmoothToTarget());
+            return true;
+        }
+
+        return false;
+    }
+
+    public bool TryMove(Vector2 direction, ColoredObject.Colors color)
+    {
+        if (isLerping) return false;
+        if (CanMove(direction, color))
         {
             targetPos = GetCellCenterOfPoint(transform.position + (Vector3)direction);
             StopAllCoroutines();
@@ -77,6 +96,39 @@ public class GridMovement : MonoBehaviour
         }
 
         RaycastHit2D hit = Physics2D.BoxCast(groundTilemap.GetCellCenterWorld(gridPos), Vector2.one * 0.5f, 0, Vector2.zero);
+        if (hit)
+        {
+            if (hit.transform.CompareTag("Door")) return false;
+            if (hit.transform.CompareTag("Box") || hit.transform.CompareTag("Corpse"))
+            {
+                return hit.transform.GetComponent<GridMovement>().TryMove(direction);
+            }
+        }
+
+        return true;
+    }
+
+    bool CanMove(Vector2 direction, ColoredObject.Colors color)
+    {
+        Vector3Int gridPos = GetGridPosOfPoint(transform.position + (Vector3)direction);
+        if (!groundTilemap.HasTile(gridPos) || colTilemap.HasTile(gridPos))
+        {
+            return false;
+        }
+
+        RaycastHit2D colorHit = Physics2D.BoxCast(groundTilemap.GetCellCenterWorld(gridPos), Vector2.one * 0.5f, 0, Vector2.zero,
+            Mathf.Infinity, LayerMask.GetMask("ColoredWall"));
+
+        if(colorHit)
+        {
+            if (colorHit.transform.TryGetComponent<ColoredObject>(out ColoredObject wall))
+            {
+                if (wall.color != color) return false;
+            }
+        }
+
+        RaycastHit2D hit = Physics2D.BoxCast(groundTilemap.GetCellCenterWorld(gridPos), Vector2.one * 0.5f, 0, Vector2.zero,
+            Mathf.Infinity, LayerMask.GetMask("Default"));
         if (hit)
         {
             if (hit.transform.CompareTag("Door")) return false;
