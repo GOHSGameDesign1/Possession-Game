@@ -27,16 +27,14 @@ public class CorpseController : PlayerController
 
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
-            CallMoveEvent();
             gridMovement.TryMove(Vector2.down);
         }
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
-            CallMoveEvent();
             gridMovement.TryMove(Vector2.up);
         }
-        if (Input.GetKeyDown(KeyCode.RightArrow)) { CallMoveEvent(); gridMovement.TryMove(Vector2.right); }
-        if (Input.GetKeyDown(KeyCode.LeftArrow)) { CallMoveEvent(); gridMovement.TryMove(Vector2.left); }
+        if (Input.GetKeyDown(KeyCode.RightArrow)) { gridMovement.TryMove(Vector2.right); }
+        if (Input.GetKeyDown(KeyCode.LeftArrow)) { gridMovement.TryMove(Vector2.left); }
 
         if (Input.GetKeyDown(KeyCode.Space))
         {

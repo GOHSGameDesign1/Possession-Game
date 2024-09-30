@@ -20,22 +20,6 @@ public class Button : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(collision.CompareTag("Box") || collision.CompareTag("Corpse"))
-        {
-            door.AddButton();
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Box") || collision.CompareTag("Corpse"))
-        {
-            door.RemoveButton();
-        }
-    }
-
     void CheckForPress()
     {
         RaycastHit2D hit = Physics2D.BoxCast(transform.position, Vector2.one * 0.2f, 0, Vector2.zero);
@@ -70,11 +54,11 @@ public class Button : MonoBehaviour
 
     private void OnEnable()
     {
-        PlayerController.onMove += CheckForPress;
+        GridMovement.onMove += CheckForPress;
     }
 
     private void OnDisable()
     {
-        PlayerController.onMove -= CheckForPress;
+        GridMovement.onMove -= CheckForPress;
     }
 }

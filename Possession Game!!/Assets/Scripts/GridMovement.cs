@@ -11,6 +11,11 @@ public class GridMovement : MonoBehaviour
 
     public Vector2 targetPos {  get; private set; }
 
+    bool isLerping;
+
+    public delegate void OnMove();
+    public static event OnMove onMove;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -22,6 +27,7 @@ public class GridMovement : MonoBehaviour
     void Start()
     {
         targetPos = transform.position;
+        isLerping = false;
     }
 
     public Vector2 GetCellCenterOfPoint(Vector3 point)
@@ -36,6 +42,7 @@ public class GridMovement : MonoBehaviour
 
     public bool TryMove(Vector2 direction)
     {
+        if (isLerping) return false;
         if (CanMove(direction))
         {
             targetPos = GetCellCenterOfPoint(transform.position + (Vector3)direction);
@@ -49,6 +56,7 @@ public class GridMovement : MonoBehaviour
 
     public void GhostMove(Vector2 direction)
     {
+        if (isLerping) return;
         Vector3Int gridPos = groundTilemap.WorldToCell(transform.position + (Vector3)direction);
         if (!groundTilemap.HasTile(gridPos))
         {
@@ -83,12 +91,15 @@ public class GridMovement : MonoBehaviour
 
     IEnumerator LerpSmoothToTarget()
     {
-        while (Vector2.Distance(rb.position, targetPos) > 0.01f)
+        isLerping = true;
+        while (Vector2.Distance(rb.position, targetPos) > 0.1f)
         {
-            rb.position = ExpDecay(rb.position, targetPos, 16, Time.deltaTime);
+            rb.position = ExpDecay(rb.position, targetPos, 40, Time.deltaTime);
             yield return null;
         }
         rb.position = targetPos;
+        onMove();
+        isLerping = false;
     }
 
     Vector2 ExpDecay(Vector2 a, Vector2 b, float decay, float deltaTime)
