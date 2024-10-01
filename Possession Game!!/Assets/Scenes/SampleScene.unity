@@ -1082,11 +1082,27 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7926788516072631402, guid: 5a241f72ae5454345afd00a1efc5697c, type: 3}
+      propertyPath: corpseTiles.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7926788516072631402, guid: 5a241f72ae5454345afd00a1efc5697c, type: 3}
       propertyPath: corpseTiles.Array.data[0]
       value: 
       objectReference: {fileID: 1389808575}
     - target: {fileID: 7926788516072631402, guid: 5a241f72ae5454345afd00a1efc5697c, type: 3}
       propertyPath: corpseTiles.Array.data[1]
+      value: 
+      objectReference: {fileID: 414655533}
+    - target: {fileID: 7926788516072631402, guid: 5a241f72ae5454345afd00a1efc5697c, type: 3}
+      propertyPath: corpseTiles.Array.data[2]
+      value: 
+      objectReference: {fileID: 414655533}
+    - target: {fileID: 7926788516072631402, guid: 5a241f72ae5454345afd00a1efc5697c, type: 3}
+      propertyPath: corpseTiles.Array.data[3]
+      value: 
+      objectReference: {fileID: 414655533}
+    - target: {fileID: 7926788516072631402, guid: 5a241f72ae5454345afd00a1efc5697c, type: 3}
+      propertyPath: corpseTiles.Array.data[4]
       value: 
       objectReference: {fileID: 414655533}
     - target: {fileID: 8748423646944179724, guid: 5a241f72ae5454345afd00a1efc5697c, type: 3}
