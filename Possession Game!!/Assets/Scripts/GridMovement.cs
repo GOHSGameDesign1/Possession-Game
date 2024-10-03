@@ -150,7 +150,10 @@ public class GridMovement : MonoBehaviour
             yield return null;
         }
         rb.position = targetPos;
-        onMove();
+        if (onMove != null)
+        {
+            onMove();
+        }
         isLerping = false;
     }
 
