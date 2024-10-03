@@ -95,7 +95,8 @@ public class GridMovement : MonoBehaviour
             return false;
         }
 
-        RaycastHit2D hit = Physics2D.BoxCast(groundTilemap.GetCellCenterWorld(gridPos), Vector2.one * 0.5f, 0, Vector2.zero);
+        RaycastHit2D hit = Physics2D.BoxCast(groundTilemap.GetCellCenterWorld(gridPos), Vector2.one * 0.5f, 0, Vector2.zero, 
+            Mathf.Infinity, LayerMask.GetMask("Default"));
         if (hit)
         {
             if (hit.transform.CompareTag("Door")) return false;
