@@ -5,7 +5,7 @@ using UnityEngine;
 public class Button : MonoBehaviour
 {
     [Tooltip("The door this button corresponds to")]
-    [SerializeField] Door door;
+    [SerializeField] List<Door> doors;
     [SerializeField] bool isPressed;
 
     // Start is called before the first frame update
@@ -45,10 +45,18 @@ public class Button : MonoBehaviour
         if(isPressed != value)
         {
             isPressed = value;
-            if (isPressed)
+
+            foreach (Door door in doors)
             {
-                door.AddButton();
-            } else { door.RemoveButton(); }
+                if (isPressed)
+                {
+                    door.AddButton();
+                } 
+                else 
+                {
+                    door.RemoveButton();
+                }
+            }
         }
     }
 
