@@ -12,6 +12,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Blue Corpse
       objectReference: {fileID: 0}
+    - target: {fileID: 4175266121805337805, guid: 13f73451daeebae43a0dafcf69093489, type: 3}
+      propertyPath: deadSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: bcf5d7e0fca461c49a72f4ffceb7c082, type: 3}
+    - target: {fileID: 4175266121805337805, guid: 13f73451daeebae43a0dafcf69093489, type: 3}
+      propertyPath: possessedSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 06ab2eebf2186764d98bade23c2567a3, type: 3}
     - target: {fileID: 4723217170523576327, guid: 13f73451daeebae43a0dafcf69093489, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

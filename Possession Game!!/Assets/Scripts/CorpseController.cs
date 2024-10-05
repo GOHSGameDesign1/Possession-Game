@@ -11,11 +11,14 @@ public class CorpseController : PlayerController
 
     [SerializeField] private bool isPossessed;
 
-    [SerializeField] SpriteRenderer sr;
-
     [SerializeField] ColoredObject.Colors corpseColor;
 
     [SerializeField] private bool canBePossessed;
+
+    [Header("Sprites")]
+    [SerializeField] Sprite deadSprite;
+    [SerializeField] Sprite possessedSprite;
+    SpriteRenderer sr;
 
     private Color baseColor;
 
@@ -23,8 +26,8 @@ public class CorpseController : PlayerController
     {
         gridMovement = GetComponent<GridMovement>();
         Player = GameObject.FindGameObjectWithTag("Player");
-        baseColor = sr.color;
-        sr.color = new Color(baseColor.r * 0.5f, baseColor.g * 0.5f, baseColor.b *0.5f);
+        sr = GetComponent<SpriteRenderer>();
+        sr.sprite = deadSprite;
         CheckCanBePossessed();
     }
 
@@ -47,7 +50,7 @@ public class CorpseController : PlayerController
         if (Input.GetKeyDown(KeyCode.Space))
         {
             isPossessed = false;
-            sr.color = new Color(baseColor.r * 0.5f, baseColor.g * 0.5f, baseColor.b * 0.5f);
+            sr.sprite = deadSprite;
             Player.transform.position = gridMovement.targetPos;
             Player.SetActive(true);
         }
@@ -58,7 +61,7 @@ public class CorpseController : PlayerController
         if (!canBePossessed) return false;
         isPossessed = true;
         Player.SetActive(false);
-        sr.color = new Color(baseColor.r, baseColor.g, baseColor.b);
+        sr.sprite = possessedSprite;
         return true;
     }
 
