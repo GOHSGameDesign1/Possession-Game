@@ -11,10 +11,16 @@ public class Door : MonoBehaviour
 
     Collider2D col;
 
+    [Header("Sprites")]
+    [SerializeField] Sprite closedSprite;
+    [SerializeField] Sprite openSprite;
+    SpriteRenderer sr;
+
     private void Awake()
     {
         numberOfButtons = 0;
         col = GetComponent<Collider2D>();
+        sr = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -51,6 +57,7 @@ public class Door : MonoBehaviour
         }
 
         col.enabled = !isOpen;
+        sr.sprite = (isOpen)? openSprite : closedSprite;
     }
 
     public void AddButton()

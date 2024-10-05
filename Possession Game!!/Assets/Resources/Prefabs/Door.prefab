@@ -101,6 +101,8 @@ MonoBehaviour:
   isOpen: 0
   isObstructed: 0
   numberOfButtons: 0
+  closedSprite: {fileID: 21300000, guid: 1dc380fd5aaba9e458b09117e1b87f9c, type: 3}
+  openSprite: {fileID: 21300000, guid: 0b6218f879491c6499091b3f9639222e, type: 3}
 --- !u!61 &9044189262502421477
 BoxCollider2D:
   m_ObjectHideFlags: 0
