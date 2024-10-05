@@ -100,6 +100,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   doors: []
   isPressed: 0
+  unPressedSprite: {fileID: 21300000, guid: 93aa2b2ad7ccf114f898dbda0dc1ecac, type: 3}
+  pressedSprite: {fileID: 21300000, guid: 62e1b74e571307b44941358770b7e936, type: 3}
 --- !u!61 &2069693046468977400
 BoxCollider2D:
   m_ObjectHideFlags: 0
