@@ -111,3 +111,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c281655bff78b7040bde6bedc66a6aec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  unPressedSprite: {fileID: 21300000, guid: 9cff0e852edfee64491baf41bf24ca6b, type: 3}
+  pressedSprite: {fileID: 21300000, guid: 783f09a91e9510e42bd5c59605215ebf, type: 3}

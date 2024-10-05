@@ -52,6 +52,14 @@ PrefabInstance:
       propertyPath: color
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 6651693145297318972, guid: 249acd9a36e252145b5323d0c2019960, type: 3}
+      propertyPath: pressedSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 1b9c9de8af20b074195fcb0f3ec6a0f3, type: 3}
+    - target: {fileID: 6651693145297318972, guid: 249acd9a36e252145b5323d0c2019960, type: 3}
+      propertyPath: unPressedSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 0886f74de9fab5149b0d785feb821471, type: 3}
     - target: {fileID: 8342842539438314458, guid: 249acd9a36e252145b5323d0c2019960, type: 3}
       propertyPath: m_Sprite
       value: 
