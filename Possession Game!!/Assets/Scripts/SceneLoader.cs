@@ -8,7 +8,7 @@ public class SceneLoader : MonoBehaviour
 {
     public static SceneLoader Instance;
 
-    [SerializeField] GameObject transitionVFX;
+    GameObject transitionVFX;
     private GameObject Player;
     private bool resetting;
 
@@ -22,6 +22,8 @@ public class SceneLoader : MonoBehaviour
             Destroy(gameObject);
         }
         DontDestroyOnLoad(gameObject);
+
+        transitionVFX = (GameObject)Resources.Load("Prefabs/TransitionVFX");
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
