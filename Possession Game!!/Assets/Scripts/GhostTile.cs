@@ -34,6 +34,7 @@ public class GhostTile : MonoBehaviour
             {
                 hit.transform.gameObject.SetActive(false);
                 Debug.Log("Win!!!");
+                SceneLoader.GetInstance().CallNextLevel();
             }
         }
     }
