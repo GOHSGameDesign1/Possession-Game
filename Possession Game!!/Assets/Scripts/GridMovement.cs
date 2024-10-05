@@ -55,7 +55,7 @@ public class GridMovement : MonoBehaviour
             StartCoroutine(LerpSmoothToTarget());
             return true;
         }
-
+        StartCoroutine("ShakeNo");
         return false;
     }
 
@@ -69,7 +69,7 @@ public class GridMovement : MonoBehaviour
             StartCoroutine(LerpSmoothToTarget());
             return true;
         }
-
+        StartCoroutine("ShakeNo");
         return false;
     }
 
@@ -79,6 +79,7 @@ public class GridMovement : MonoBehaviour
         Vector3Int gridPos = groundTilemap.WorldToCell(transform.position + (Vector3)direction);
         if (!groundTilemap.HasTile(gridPos))
         {
+            StartCoroutine("ShakeNo");
             return;
         }
 
@@ -156,6 +157,15 @@ public class GridMovement : MonoBehaviour
             onMove();
         }
         isLerping = false;
+    }
+
+    IEnumerator ShakeNo()
+    {
+        transform.rotation = Quaternion.Euler(0, 0, 20);
+        yield return new WaitForSeconds(0.1f);
+        transform.rotation = Quaternion.Euler(0, 0, -20f);
+        yield return new WaitForSeconds(0.1f);
+        transform.rotation = Quaternion.identity;
     }
 
     Vector2 ExpDecay(Vector2 a, Vector2 b, float decay, float deltaTime)
