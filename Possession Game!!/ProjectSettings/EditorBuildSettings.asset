@@ -11,4 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SceneManageTest.unity
     guid: 45211593cac700146bc24b7aa1c0746a
+  - enabled: 1
+    path: Assets/Scenes/Hui 1.unity
+    guid: 3984af7f694c95241835da5d741068ab
+  - enabled: 1
+    path: Assets/Scenes/Hui 2.unity
+    guid: 5ae2f87f4942c17449eb07ee11b64701
   m_configObjects: {}

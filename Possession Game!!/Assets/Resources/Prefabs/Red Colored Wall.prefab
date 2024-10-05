@@ -13,16 +13,28 @@ PrefabInstance:
       value: Red Colored Wall
       objectReference: {fileID: 0}
     - target: {fileID: 6113739063179087099, guid: b42d8465fe7e3ba4b803668d1686596e, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 551ef3abbae019d41ac3d96c199383c3, type: 3}
+    - target: {fileID: 6113739063179087099, guid: b42d8465fe7e3ba4b803668d1686596e, type: 3}
+      propertyPath: m_Color.a
+      value: 0.18039216
+      objectReference: {fileID: 0}
+    - target: {fileID: 6113739063179087099, guid: b42d8465fe7e3ba4b803668d1686596e, type: 3}
       propertyPath: m_Color.b
-      value: 0
+      value: 0.57924527
       objectReference: {fileID: 0}
     - target: {fileID: 6113739063179087099, guid: b42d8465fe7e3ba4b803668d1686596e, type: 3}
       propertyPath: m_Color.g
-      value: 0
+      value: 0.57924527
       objectReference: {fileID: 0}
     - target: {fileID: 6113739063179087099, guid: b42d8465fe7e3ba4b803668d1686596e, type: 3}
       propertyPath: m_Color.r
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6113739063179087099, guid: b42d8465fe7e3ba4b803668d1686596e, type: 3}
+      propertyPath: m_SortingOrder
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 8865920053967661914, guid: b42d8465fe7e3ba4b803668d1686596e, type: 3}
       propertyPath: m_LocalPosition.x
