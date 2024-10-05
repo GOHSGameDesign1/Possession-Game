@@ -9,9 +9,8 @@ public class TransitionVFX : MonoBehaviour
 
     private void Awake()
     {
-        //transform.localScale = Vector2.one * 30f;
-        decayConstant = -Mathf.Log(0.1f)/transitionTime;
-        //StartCoroutine(LerpSize(0.1f, false));
+        decayConstant = -Mathf.Log(0.1f)/transitionTime; // This math is from the exponential decay function
+        // https://en.wikipedia.org/wiki/Exponential_decay
     }
 
     public void Expand()
