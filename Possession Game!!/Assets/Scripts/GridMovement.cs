@@ -51,7 +51,7 @@ public class GridMovement : MonoBehaviour
         if (CanMove(direction))
         {
             targetPos = GetCellCenterOfPoint(transform.position + (Vector3)direction);
-            StopAllCoroutines();
+            StopCoroutine("LerpSmoothToTarget");
             StartCoroutine(LerpSmoothToTarget());
             return true;
         }
@@ -65,7 +65,7 @@ public class GridMovement : MonoBehaviour
         if (CanMove(direction, color))
         {
             targetPos = GetCellCenterOfPoint(transform.position + (Vector3)direction);
-            StopAllCoroutines();
+            StopCoroutine("LerpSmoothToTarget");
             StartCoroutine(LerpSmoothToTarget());
             return true;
         }
@@ -84,7 +84,7 @@ public class GridMovement : MonoBehaviour
         }
 
         targetPos = GetCellCenterOfPoint(transform.position + (Vector3)direction);
-        StopAllCoroutines();
+        StopCoroutine("LerpSmoothToTarget");
         StartCoroutine(LerpSmoothToTarget());
     }
 
@@ -145,6 +145,11 @@ public class GridMovement : MonoBehaviour
 
     IEnumerator LerpSmoothToTarget()
     {
+        if(TryGetComponent<AudioSource>(out AudioSource source))
+        {
+            source.pitch = 1 + Random.Range(-0.3f, 0.3f);
+            source.Play();
+        }
         isLerping = true;
         while (Vector2.Distance(rb.position, targetPos) > 0.1f)
         {
