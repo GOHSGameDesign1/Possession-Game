@@ -1088,10 +1088,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1433869922165589516, guid: 66bd932cce3733047b491d007bfb5d08, type: 3}
-      propertyPath: m_SortingOrder
-      value: 6
-      objectReference: {fileID: 0}
     - target: {fileID: 1547401675391010866, guid: 66bd932cce3733047b491d007bfb5d08, type: 3}
       propertyPath: m_Name
       value: Grid
