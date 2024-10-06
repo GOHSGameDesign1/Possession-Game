@@ -8,21 +8,25 @@ public class Button : MonoBehaviour
     [SerializeField] List<Door> doors;
     [SerializeField] bool isPressed;
 
+    [SerializeField] Sprite unPressedSprite;
+    [SerializeField] Sprite pressedSprite;
+    private SpriteRenderer sr;
+
+    private void Awake()
+    {
+        sr = GetComponent<SpriteRenderer>();
+    }
     // Start is called before the first frame update
     void Start()
     {
         isPressed = false;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        sr.sprite = unPressedSprite;
     }
 
     void CheckForPress()
     {
-        RaycastHit2D hit = Physics2D.BoxCast(transform.position, Vector2.one * 0.2f, 0, Vector2.zero);
+        RaycastHit2D hit = Physics2D.BoxCast(transform.position, Vector2.one * 0.2f, 0, Vector2.zero, Mathf.Infinity,
+            LayerMask.GetMask("Default"));
         if (hit)
         {
             if(hit.transform.CompareTag("Box") || hit.transform.CompareTag("Corpse"))
@@ -57,6 +61,15 @@ public class Button : MonoBehaviour
                     door.RemoveButton();
                 }
             }
+
+            if (isPressed)
+            {
+                sr.sprite = pressedSprite;
+            } else
+            {
+                sr.sprite = unPressedSprite;
+            }
+
         }
     }
 

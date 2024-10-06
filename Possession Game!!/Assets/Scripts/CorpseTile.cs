@@ -7,11 +7,16 @@ public class CorpseTile : MonoBehaviour
 {
     ColoredObject colored;
 
+    [SerializeField] Sprite unPressedSprite;
+    [SerializeField] Sprite pressedSprite;
+    private SpriteRenderer sr;
     public bool hasCorpse { get; private set; }
     private void Awake()
     {
         colored = GetComponent<ColoredObject>();
         hasCorpse = false;
+        sr = GetComponent<SpriteRenderer>();
+        sr.sprite = unPressedSprite;
     }
 
     void CheckForCorpse()
@@ -37,6 +42,15 @@ public class CorpseTile : MonoBehaviour
         {
             hasCorpse = false;
         }
+
+        if (hasCorpse)
+        {
+            sr.sprite = pressedSprite; 
+        } else
+        {
+            sr.sprite = unPressedSprite;
+        }
+
     }
 
     private void OnEnable()
