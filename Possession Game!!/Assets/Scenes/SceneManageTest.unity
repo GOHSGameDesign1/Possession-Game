@@ -890,6 +890,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Possess VFX
       objectReference: {fileID: 0}
+    - target: {fileID: 735590514645293860, guid: ccc94682e2bab8b44b24f4891761a8a6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6811396311454747465, guid: ccc94682e2bab8b44b24f4891761a8a6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.47

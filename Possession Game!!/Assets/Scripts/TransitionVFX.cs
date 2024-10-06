@@ -7,22 +7,31 @@ public class TransitionVFX : MonoBehaviour
     [SerializeField] private float transitionTime;
     private float decayConstant;
 
+    private AudioSource source;
+
     private void Awake()
     {
         decayConstant = -Mathf.Log(0.1f)/transitionTime; // This math is from the exponential decay function
         // https://en.wikipedia.org/wiki/Exponential_decay
+
+        source = GetComponent<AudioSource>();
     }
 
     public void Expand()
     {
         transform.localScale = Vector2.one * 0.1f;
         StartCoroutine(LerpSize(30f, true));
+        source.pitch = 1;
+        source.Play();
     }
 
     public void Shrink()
     {
         transform.localScale = Vector2.one * 30f;
         StartCoroutine(LerpSize(0.1f, false));
+        //source.timeSamples = source.clip.samples - 1;
+        //source.pitch = -1;
+        //source.Play();
     }
 
     IEnumerator LerpSize(float endSizeScalar, bool nextLevel)
