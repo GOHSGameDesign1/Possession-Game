@@ -14,14 +14,15 @@ public class SceneLoader : MonoBehaviour
 
     private void Awake()
     {
-        if(Instance == null)
-        {
+        //if (Instance == null)
+        //{
             Instance = this;
-        } else
-        {
-            Destroy(gameObject);
-        }
-        DontDestroyOnLoad(gameObject);
+        //}
+        //else
+        //{
+        //    Destroy(gameObject);
+        //}
+        //DontDestroyOnLoad(gameObject);
 
         transitionVFX = (GameObject)Resources.Load("Prefabs/TransitionVFX");
     }
@@ -30,8 +31,15 @@ public class SceneLoader : MonoBehaviour
     {
         Player = GameObject.FindWithTag("Player");
         resetting = false;
-        GameObject vfx = Instantiate(transitionVFX, Player.transform.position, Quaternion.identity);
-        vfx.GetComponent<TransitionVFX>().Shrink();
+        if (Player != null)
+        {
+            GameObject vfx = Instantiate(transitionVFX, Player.transform.position, Quaternion.identity);
+            vfx.GetComponent<TransitionVFX>().Shrink();
+        } else
+        {
+            GameObject vfx = Instantiate(transitionVFX, Vector3.zero, Quaternion.identity);
+            vfx.GetComponent<TransitionVFX>().Shrink();
+        }
     }
 
     public static SceneLoader GetInstance() {  return Instance; }
@@ -49,9 +57,17 @@ public class SceneLoader : MonoBehaviour
 
     public float BeginTransition()
     {
-        TransitionVFX vfx = Instantiate(transitionVFX, Player.transform.position, Quaternion.identity).GetComponent<TransitionVFX>();
-        vfx.Expand();
-        return vfx.GetTransitionTime();
+        if (Player != null)
+        {
+            TransitionVFX vfx = Instantiate(transitionVFX, Player.transform.position, Quaternion.identity).GetComponent<TransitionVFX>();
+            vfx.Expand();
+            return vfx.GetTransitionTime();
+        } else
+        {
+            TransitionVFX vfx = Instantiate(transitionVFX, Vector3.zero, Quaternion.identity).GetComponent<TransitionVFX>();
+            vfx.Expand();
+            return vfx.GetTransitionTime();
+        }
     }
 
     public void CallNextLevel()

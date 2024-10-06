@@ -6,15 +6,36 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Title.unity
+    guid: b5de3da7312602948bd0cbfb0c6628f4
+  - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SceneManageTest.unity
     guid: 45211593cac700146bc24b7aa1c0746a
   - enabled: 1
     path: Assets/Scenes/Hui 1.unity
     guid: 3984af7f694c95241835da5d741068ab
   - enabled: 1
+    path: Assets/Scenes/Leon 3.unity
+    guid: a710d50ba02f53341b774e3535e18686
+  - enabled: 1
+    path: Assets/Scenes/Hui 3.unity
+    guid: 24401fc2960b0ea4ea1694d3f5219c81
+  - enabled: 1
+    path: Assets/Scenes/Leon 1.unity
+    guid: 84c7909103f47cf459ef89a46ede40d1
+  - enabled: 1
     path: Assets/Scenes/Hui 2.unity
     guid: 5ae2f87f4942c17449eb07ee11b64701
+  - enabled: 1
+    path: Assets/Scenes/Leon 4.unity
+    guid: 948b389ccef9fbc438eec58c566b4c53
+  - enabled: 1
+    path: Assets/Scenes/Hui 4.unity
+    guid: 8dd57a136aeee7b49928656c438aa7ec
+  - enabled: 1
+    path: Assets/Scenes/Leon 2.unity
+    guid: 812da2dfa27736e49940ead9c979cf25
   m_configObjects: {}
