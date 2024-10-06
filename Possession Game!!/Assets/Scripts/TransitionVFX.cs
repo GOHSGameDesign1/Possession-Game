@@ -21,7 +21,7 @@ public class TransitionVFX : MonoBehaviour
     {
         transform.localScale = Vector2.one * 0.1f;
         StartCoroutine(LerpSize(30f, true));
-        source.pitch = 1;
+        source.pitch = 1 + Random.Range(-0.1f, 0.1f);
         source.Play();
     }
 
