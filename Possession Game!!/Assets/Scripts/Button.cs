@@ -25,7 +25,8 @@ public class Button : MonoBehaviour
 
     void CheckForPress()
     {
-        RaycastHit2D hit = Physics2D.BoxCast(transform.position, Vector2.one * 0.2f, 0, Vector2.zero);
+        RaycastHit2D hit = Physics2D.BoxCast(transform.position, Vector2.one * 0.2f, 0, Vector2.zero, Mathf.Infinity,
+            LayerMask.GetMask("Default"));
         if (hit)
         {
             if(hit.transform.CompareTag("Box") || hit.transform.CompareTag("Corpse"))
