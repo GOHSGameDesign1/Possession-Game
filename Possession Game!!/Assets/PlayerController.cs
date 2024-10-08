@@ -37,6 +37,7 @@ public class PlayerController : MonoBehaviour
 
     void TryPossess()
     {
+        if (gridMovement.isLerping) return;
         RaycastHit2D hit = Physics2D.BoxCast(gridMovement.GetCellCenterOfPoint(gridMovement.targetPos), Vector2.one * 0.5f, 0,
             Vector2.zero, Mathf.Infinity, LayerMask.GetMask("Default"));
 

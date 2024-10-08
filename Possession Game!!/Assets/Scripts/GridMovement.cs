@@ -11,7 +11,7 @@ public class GridMovement : MonoBehaviour
 
     public Vector2 targetPos {  get; private set; }
 
-    bool isLerping;
+    public bool isLerping { get; private set; }
 
     public delegate void OnMove();
     public static event OnMove onMove;
